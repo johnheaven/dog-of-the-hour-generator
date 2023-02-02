@@ -4,4 +4,4 @@ services:
     environment:
       - CSV_PATH=/csv
     volumes:
-      - ./${DOTH_DATA_DIR:-./test-data}:/csv
+      - ${DOTH_DATA_DIR:-./test-data}:/csv
