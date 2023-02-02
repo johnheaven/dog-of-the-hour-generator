@@ -1,0 +1,7 @@
+services:
+  generator:
+    build: .
+    environment:
+      - CSV_PATH=/csv
+    volumes:
+      - ./${DOTH_DATA_DIR:-./test-data}:/csv
