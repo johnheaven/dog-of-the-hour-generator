@@ -7,7 +7,7 @@ import os
 
 # get dognames from env var, otherwise set default
 dogs = os.environ.get('DOGNAMES', 'Sniff,Juci,Eddie,Cosmo').split(',')
-csv_path = os.environ.get('CSV_PATH', '.').rstrip('/') + '/dogofthehour.csv'
+csv_path = '/csv/dogofthehour.csv'
 
 query = {'num': 1, 'min': 0, 'max': len(dogs) - 1, 'col': 1, 'base': 10, 'format': 'plain', 'rnd': 'new'}
 
@@ -41,14 +41,14 @@ while http_response == 503:
 # Get the dog's name from the dictionary
 dogname = dogs[dog_number]
 
-# Get a timestamp
-dateandtime = time.localtime()
+# Get a timestamp in CET by adding an hour
+dateandtime = time.gmtime(time.time() + 3600)
 
 # Put values into a dictionary
 doth_latest = {}
 doth_latest['Date'] = time.strftime('%Y%m%d',dateandtime)
 doth_latest['Hour'] = time.strftime('%H', dateandtime)
-doth_latest['Timezone'] = time.strftime('%Z', dateandtime)
+doth_latest['Timezone'] = 'CET'
 doth_latest['dogname'] = dogname
 doth_latest['truly_random'] = truly_random
 
