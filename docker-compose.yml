@@ -3,3 +3,6 @@ services:
     build: .
     volumes:
       - ${DOTH_DATA_DIR:-./test-data}:/csv
+    environment:
+      - "TZ = Europe/Berlin"
+

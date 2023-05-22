@@ -1,4 +1,6 @@
 import time
+from datetime import datetime as dt
+from pytz import timezone as tz
 import requests
 import random
 import csv
@@ -41,13 +43,14 @@ while http_response == 503:
 # Get the dog's name from the dictionary
 dogname = dogs[dog_number]
 
-# Get a timestamp in CET by adding an hour
-dateandtime = time.gmtime(time.time() + 3600)
+# Get a timestamp in CET time
+cet = tz("Europe/Berlin")
+now = dt.now(tz=cet)
 
 # Put values into a dictionary
 doth_latest = {}
-doth_latest['Date'] = time.strftime('%Y%m%d',dateandtime)
-doth_latest['Hour'] = time.strftime('%H', dateandtime)
+doth_latest['Date'] = now.strftime('%Y%m%d')
+doth_latest['Hour'] = now.strftime('%H')
 doth_latest['Timezone'] = 'CET'
 doth_latest['dogname'] = dogname
 doth_latest['truly_random'] = truly_random
